@@ -13,8 +13,8 @@ Author URI: https://github.com/jvining
   --event-color-secondary:#666;
   --event-color-accent:#333;
   --event-header-color:#666;
-  --event-logo-color:url('http://wbrftp.net/web/dev/img/logo-color.svg') center center no-repeat;
-  --event-logo-knockout:url('http://wbrftp.net/web/dev/img/logo-knockout.svg') center center no-repeat;
+  --event-logo-color:url('../img/logo-color.svg') center center no-repeat;
+  --event-logo-knockout:url('../img/logo-knockout.svg') center center no-repeat;
   --event-hero:url('https://picsum.photos/1400/450') center center scroll no-repeat;
   --event-subpage-hero:url('https://picsum.photos/1400/450') center center scroll no-repeat;
 }
