@@ -28,7 +28,14 @@ body {background:#fbfbfb; color: var(--event-header-color); font-family: var(--e
  
  
 /********************************
- Primary Navigation 
+ Primary Navigation
+
+ 3 flex sections inside #eco-primary-nav .container, in DOM order:
+   .eco-nav-col-logo  - logo + cross-event caret (col 1)
+   .eco-nav-col-ctas  - CTA buttons + mobile toggler (col 3, reordered via order-lg-3)
+   .eco-nav-col-items - #primary-nav collapse, nav item dropdowns (col 2)
+ Row splitting below lg and column widths/order above lg are handled entirely
+ by Bootstrap's navbar-expand-lg + order-lg-3 utilities - no custom breakpoints here.
 ********************************/
 
 /* Primary Nav Logo */
