@@ -8,11 +8,15 @@ as a CSS background-image, swapped between --event-logo-color and
 
 A background-image still has no intrinsic size the way a real <img> does,
 so the box needs *some* explicit dimensions - but that's set once, as a
-single fluid clamp() (matching css/logo-dual-img.css's approach), instead
-of a fixed px width plus a max-width:1200px override. aspect-ratio keeps
-the box's proportions correct without a hardcoded height, and
-background-size:contain scales the logo to exactly fill that box at every
-size, so there's no leftover transparent space inside it.
+single fluid clamp() (matching css/logo-dual-img.css's approach) for
+width, and one fixed height, neither of which need to change per logo:
+background-size:contain always preserves whatever the real image's ratio
+is (it never distorts), so swapping the URL in the two variables below is
+the only thing a new event's logo should ever require. The trade-off vs.
+a per-logo aspect-ratio is that a logo shaped very differently from the
+box (e.g. tall/square instead of a wide wordmark) may get letterboxed
+with a bit of empty space above/below inside the box - acceptable here
+since it never distorts the logo and event logos are wordmark-shaped.
 
 (The original fixed-width version left the box at 200px even once
 background-size shrank the *visible* logo below 1200px, which is why the
@@ -30,7 +34,7 @@ making the box itself match the visible logo's size.)
   font-size: 0;
   flex: 0 0 auto; /* width below, not flex-basis - see note */
   width: clamp(120px, 30vw, 200px);
-  aspect-ratio: 327.34 / 110.76; /* logo-*.svg viewBox ratio */
+  height: 56px; /* fixed and logo-agnostic; contain handles the real ratio */
   background-repeat: no-repeat;
   background-position: center center;
   background-size: contain;
@@ -38,9 +42,9 @@ making the box itself match the visible logo's size.)
 }
 /* Note: driven by `width`, not `flex-basis`, because with an empty box
    (no text/img content, just a background-image) some browsers resolve
-   flex-basis + aspect-ratio against the box's collapsed content height
-   (here just its padding) instead of the intended width, shrinking it to
-   a few px. An explicit width + flex-shrink:0 sidesteps that entirely. */
+   flex-basis against the box's collapsed content height (here just its
+   padding) instead of the intended width, shrinking it to a few px. An
+   explicit width + flex-shrink:0 sidesteps that entirely. */
 
 /* Swap only background-image (not the `background` shorthand) so the
    sizing/position/repeat set above never gets reset by the state change. */
