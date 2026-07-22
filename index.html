@@ -93,7 +93,16 @@
                 </div>
             </div>
         </div>
-        <nav id="eco-primary-nav" class="navbar navbar-expand-lg fixed-top py-3 px-md-0 px-4  navbar-dark bg-transparent">
+        <!--
+            data-logo-mode picks which logo setup this event uses:
+              "dual"   (default) - CMS provides a separate color + knockout SVG.
+                                   Uses both <img>s below, swapped via CSS on scroll.
+              "single" - CMS only outputs one logo image. Delete the .eco-logo-knockout
+                         <img>, keep only one <img class="eco-logo eco-logo-single">,
+                         and set data-logo-mode="single" here. See base.css for the
+                         matching fallback styling (contrast boost, no color-forcing).
+        -->
+        <nav id="eco-primary-nav" class="navbar navbar-expand-lg fixed-top py-3 px-md-0 px-4  navbar-dark bg-transparent" data-logo-mode="dual">
             <div class="container">
 
                 <!-- Col 1: Logo + cross-event dropdown caret + toggler (toggler only shown here below md) -->
