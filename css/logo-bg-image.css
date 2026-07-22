@@ -6,17 +6,43 @@ an empty text link (text hidden via font-size:0) and the logo is painted
 as a CSS background-image, swapped between --event-logo-color and
 --event-logo-knockout on scroll.
 
-Width is fixed in px per breakpoint (200px, then 115px below 1200px) since
-a background-image has no intrinsic box to scale off of the way a real
-<img> does - there's no column-relative sizing available in this version.
+A background-image still has no intrinsic size the way a real <img> does,
+so the box needs *some* explicit dimensions - but that's set once, as a
+single fluid clamp() (matching css/logo-dual-img.css's approach), instead
+of a fixed px width plus a max-width:1200px override. aspect-ratio keeps
+the box's proportions correct without a hardcoded height, and
+background-size:contain scales the logo to exactly fill that box at every
+size, so there's no leftover transparent space inside it.
+
+(The original fixed-width version left the box at 200px even once
+background-size shrank the *visible* logo below 1200px, which is why the
+cross-event caret next to it never sat flush against the logo, and why
+the nav-items column had less room than it should've - both are fixed by
+making the box itself match the visible logo's size.)
 */
 :root {
-  --event-logo-color:url('../img/logo-color.svg') center center no-repeat;
-  --event-logo-knockout:url('../img/logo-knockout.svg') center center no-repeat;
+  --event-logo-color: url('../img/logo-color.svg');
+  --event-logo-knockout: url('../img/logo-knockout.svg');
 }
 
-#eco-primary-nav .navbar-brand {font-size:0; height:65px; width:200px; background-size:200px!important;}
-@media(max-width:1200px){ #eco-primary-nav .navbar-brand {background-size:115px!important;transition:all 0.3s ease;}}
+#eco-primary-nav .navbar-brand {
+  display: block;
+  font-size: 0;
+  flex: 0 0 auto; /* width below, not flex-basis - see note */
+  width: clamp(120px, 30vw, 200px);
+  aspect-ratio: 327.34 / 110.76; /* logo-*.svg viewBox ratio */
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: contain;
+  transition: all 0.3s ease;
+}
+/* Note: driven by `width`, not `flex-basis`, because with an empty box
+   (no text/img content, just a background-image) some browsers resolve
+   flex-basis + aspect-ratio against the box's collapsed content height
+   (here just its padding) instead of the intended width, shrinking it to
+   a few px. An explicit width + flex-shrink:0 sidesteps that entirely. */
 
-#eco-primary-nav.bg-transparent .navbar-brand {background: var(--event-logo-knockout); transition:all 0.3s ease;}
-#eco-primary-nav.bg-light .navbar-brand {background: var(--event-logo-color); transition:all 0.3s ease;}
+/* Swap only background-image (not the `background` shorthand) so the
+   sizing/position/repeat set above never gets reset by the state change. */
+#eco-primary-nav.bg-transparent .navbar-brand {background-image: var(--event-logo-knockout);}
+#eco-primary-nav.bg-light .navbar-brand {background-image: var(--event-logo-color);}
