@@ -1,0 +1,21 @@
+/*
+Project Name: Bootstrap 5 ECO2 Template
+Project URI: https://github.com/jvining
+Description: 
+Author: Joshua Vining
+Author URI: https://github.com/jvining
+----------------------------------------------------------------*/
+:root {
+--pallette: #1e3c64/rgb(30 60 100) #2b67b2/rgb(43 103 178) #f7931e/rgb(247 147 30) ;
+--font-weights: Light:300 / Regular:400 / Medium:500 / SemiBold:600 / Bold:700 / ExtraBold :800;
+--event-font-primary: 'Open Sans', 'Helvetica Neue', 'Helvetica', 'Arial', 'sans-serif'!important;
+--event-font-secondary: 'Open Sans', 'Helvetica Neue', 'Helvetica', 'Arial', 'sans-serif'!important;
+--event-color-primary: rgb(43 103 178)!important;
+--event-color-secondary: rgb(247 147 30)!important;
+--event-color-accent: rgb(30 60 100)!important;
+--event-header-color: rgb(30 60 100)!important;
+--gradient-event: linear-gradient(139deg,var(--event-header-color) 57%, var(--event-color-primary) 100%);  
+//--event-inner-page-strip:;
+//--event-logo-color:;
+//--event-logo-knockout:;
+}
