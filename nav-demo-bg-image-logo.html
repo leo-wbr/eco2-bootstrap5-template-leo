@@ -24,7 +24,7 @@
     <link rel="stylesheet" type="text/css" href="css/fontawesome.min.css">
     <link rel="stylesheet" type="text/css" href="css/slick.css">
     <link rel="stylesheet" type="text/css" href="css/base.css">
-    <link rel="stylesheet" type="text/css" href="css/logo-dual-img.css">
+    <link rel="stylesheet" type="text/css" href="css/logo-bg-image.css">
     <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 
@@ -94,18 +94,15 @@
                 </div>
             </div>
         </div>
-        <!-- Logo: "dual image" version - see css/logo-dual-img.css.
-             For the CSS-variable/background-image version instead, open
-             nav-demo-bg-image-logo.html (uses css/logo-bg-image.css). -->
+        <!-- Logo: "background image" version (original template behavior) - see
+             css/logo-bg-image.css. For the two-<img>-upload version instead,
+             open index.html (uses css/logo-dual-img.css). -->
         <nav id="eco-primary-nav" class="navbar navbar-expand-lg fixed-top py-3 px-md-0 px-4  navbar-dark bg-transparent">
             <div class="container">
 
                 <!-- Col 1: Logo + cross-event dropdown caret + toggler (toggler only shown here below md) -->
                 <div class="d-flex align-items-center eco-nav-col eco-nav-col-logo">
-                    <a href="index.php" class="navbar-brand">
-                        <img src="img/logo-knockout.svg" alt="Bootstrap 5 ECO2 Template" class="eco-logo eco-logo-knockout">
-                        <img src="img/logo-color.svg" alt="Bootstrap 5 ECO2 Template" class="eco-logo eco-logo-color">
-                    </a>
+                    <a href="index.php" class="navbar-brand">Bootstrap 5 ECO2 Template</a>
                     <button class="navbar-toggler ms-3 d-md-none" type="button" data-bs-toggle="collapse" data-bs-target="#primary-nav" aria-controls="primary-nav" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
@@ -2430,12 +2427,9 @@
                 color: #ffffff80;
             }
 
-            body.front-page.modal-open #eco-primary-nav .navbar-brand .eco-logo-knockout {
-                display: block !important;
-            }
-
-            body.front-page.modal-open #eco-primary-nav .navbar-brand .eco-logo-color {
-                display: none !important;
+            body.front-page.modal-open #eco-primary-nav .navbar-brand {
+                background: var(--event-logo-knockout) !important;
+                transition: all 0.3s ease;
             }
             </style>
             <div class="modal-content bg-transparent pt-5 p-4 border-0">

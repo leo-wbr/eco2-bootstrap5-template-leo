@@ -1,0 +1,22 @@
+/*
+Primary Nav Logo - "background image" version (original template behavior)
+Fallback: the CMS only exposes the logo as a couple of configurable image
+variables (URLs), not as real uploaded <img> elements. .navbar-brand stays
+an empty text link (text hidden via font-size:0) and the logo is painted
+as a CSS background-image, swapped between --event-logo-color and
+--event-logo-knockout on scroll.
+
+Width is fixed in px per breakpoint (200px, then 115px below 1200px) since
+a background-image has no intrinsic box to scale off of the way a real
+<img> does - there's no column-relative sizing available in this version.
+*/
+:root {
+  --event-logo-color:url('../img/logo-color.svg') center center no-repeat;
+  --event-logo-knockout:url('../img/logo-knockout.svg') center center no-repeat;
+}
+
+#eco-primary-nav .navbar-brand {font-size:0; height:65px; width:200px; background-size:200px!important;}
+@media(max-width:1200px){ #eco-primary-nav .navbar-brand {background-size:115px!important;transition:all 0.3s ease;}}
+
+#eco-primary-nav.bg-transparent .navbar-brand {background: var(--event-logo-knockout); transition:all 0.3s ease;}
+#eco-primary-nav.bg-light .navbar-brand {background: var(--event-logo-color); transition:all 0.3s ease;}

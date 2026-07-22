@@ -41,32 +41,12 @@ body {background:#fbfbfb; color: var(--event-header-color); font-family: var(--e
  wrappers at a breakpoint: toggler #1 (in col 1, next to the logo) shows only
  below md; toggler #2 (in col 3, with the CTAs) shows only md-lg, then
  navbar-expand-lg's own rule hides the whole toggler concept at lg+.
+
+ Logo sizing/swap CSS lives in its own stylesheet, not here, since there are
+ two interchangeable versions depending on what the CMS can output for a
+ given event - see css/logo-dual-img.css and css/logo-bg-image.css.
 ********************************/
-
-/* Primary Nav Logo
-   flex-basis is set once here (a fluid clamp(), not per-breakpoint overrides)
-   on .navbar-brand itself; the img just fills it at width:100%, so the logo
-   scales continuously with the column instead of jumping between fixed
-   pixel widths at hardcoded breakpoints. */
 #eco-primary-nav {transition:all 0.5s ease;}
-#eco-primary-nav .navbar-brand {display:block; flex: 0 1 clamp(120px, 30vw, 200px); padding:0; margin:0;}
-#eco-primary-nav .navbar-brand .eco-logo {display:block; width:100%; height:auto;}
-
-/* Primary Nav Logo On-Scroll - "dual" mode: CMS provides both a color and a
-   knockout SVG, swap knockout/color img instead of a background-image */
-#eco-primary-nav[data-logo-mode="dual"] .navbar-brand .eco-logo-color {display:none;}
-#eco-primary-nav[data-logo-mode="dual"].bg-light .navbar-brand .eco-logo-color {display:block;}
-#eco-primary-nav[data-logo-mode="dual"].bg-light .navbar-brand .eco-logo-knockout {display:none;}
-
-/* Primary Nav Logo - "single" mode fallback: CMS only outputs one logo image,
-   no dedicated knockout art. Forcing the logo to solid white via a filter
-   isn't safe here since some knockout logos are two-tone (white + accent
-   color), so instead of recoloring, boost contrast against the transparent
-   photo hero with a drop-shadow; real brand colors stay intact in both
-   nav states. */
-#eco-primary-nav[data-logo-mode="single"].bg-transparent .navbar-brand .eco-logo-single {
-  filter: drop-shadow(0 1px 3px rgba(0,0,0,.55));
-}
 
 /* Primary Nav On-Hover Behavior */
 #eco-primary-nav .dropdown:hover>.dropdown-menu {display: block;}

@@ -1,0 +1,18 @@
+/*
+Primary Nav Logo - "dual image" version
+Best case: the CMS has two dedicated upload fields for this event (a color
+logo and a knockout logo), rendered as two real <img> tags in the markup
+(see index.html, .eco-logo-color / .eco-logo-knockout).
+
+flex-basis is set once, on .navbar-brand itself, as a fluid clamp() rather
+than per-breakpoint width overrides - the imgs just fill it at width:100%,
+so the logo scales continuously with its column.
+*/
+#eco-primary-nav .navbar-brand {display:block; flex: 0 1 clamp(120px, 30vw, 200px); padding:0; margin:0;}
+#eco-primary-nav .navbar-brand .eco-logo {display:block; width:100%; height:auto;}
+
+/* On-scroll swap: show the color img once the nav goes solid (.bg-light),
+   show the knockout img while the nav is still transparent over the hero. */
+#eco-primary-nav .navbar-brand .eco-logo-color {display:none;}
+#eco-primary-nav.bg-light .navbar-brand .eco-logo-color {display:block;}
+#eco-primary-nav.bg-light .navbar-brand .eco-logo-knockout {display:none;}
