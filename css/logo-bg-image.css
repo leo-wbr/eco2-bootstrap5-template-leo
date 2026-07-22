@@ -50,3 +50,15 @@ making the box itself match the visible logo's size.)
    sizing/position/repeat set above never gets reset by the state change. */
 #eco-primary-nav.bg-transparent .navbar-brand {background-image: var(--event-logo-knockout);}
 #eco-primary-nav.bg-light .navbar-brand {background-image: var(--event-logo-color);}
+
+/* Cross-event modal open: force the knockout logo regardless of scroll state.
+   This MUST live in this stylesheet (not an inline <style> in the page) -
+   a relative url() inside a custom property resolves against the stylesheet
+   where the var() is actually used, not where --event-logo-knockout was
+   declared. Written inline in the HTML page, '../img/...' resolved against
+   the page's own location instead of css/logo-bg-image.css's, which is
+   wrong on any site served from a subpath (e.g. a GitHub Pages project
+   site) - it escaped the subpath entirely and 404'd. */
+body.front-page.modal-open #eco-primary-nav .navbar-brand {
+  background-image: var(--event-logo-knockout) !important;
+}
