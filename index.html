@@ -96,26 +96,29 @@
         <nav id="eco-primary-nav" class="navbar navbar-expand-lg fixed-top py-3 px-md-0 px-4  navbar-dark bg-transparent">
             <div class="container">
 
-                <!-- Col 1: Logo + cross-event dropdown caret -->
+                <!-- Col 1: Logo + cross-event dropdown caret + toggler (toggler only shown here below md) -->
                 <div class="d-flex align-items-center eco-nav-col eco-nav-col-logo">
                     <a href="index.php" class="navbar-brand">Bootstrap 5 ECO2 Template</a>
+                    <button class="navbar-toggler ms-3 d-md-none" type="button" data-bs-toggle="collapse" data-bs-target="#primary-nav" aria-controls="primary-nav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
                 </div>
 
-                <!-- Col 3: CTAs + mobile toggler (stays on the logo's row; reordered after nav items at lg+) -->
-                <div class="d-flex align-items-center order-lg-3 eco-nav-col eco-nav-col-ctas">
-                    <ul class="navbar-nav flex-row">
-                        <li class="nav-item ms-2">
+                <!-- Col 3: CTAs (stretch to fill the row + split 50/50 below md) + mobile toggler (md-lg only; hidden below md since it lives in Col 1 there, hidden at lg+ by navbar-expand-lg) -->
+                <div class="d-flex align-items-center order-lg-3 flex-grow-1 flex-md-grow-0 eco-nav-col eco-nav-col-ctas">
+                    <ul class="navbar-nav flex-row gap-2 flex-fill">
+                        <li class="nav-item flex-fill flex-md-grow-0">
                             <a class="nav-link p-0" href="#">
                                 <span class="btn btn-sm btn-primary d-block  text-white">View Program</span>
                             </a>
                         </li>
-                        <li class="nav-item ms-2">
+                        <li class="nav-item flex-fill flex-md-grow-0">
                             <a class="nav-link p-0" href="#">
                                 <span class="btn btn-sm btn-danger d-block   text-white">Register Now +</span>
                             </a>
                         </li>
                     </ul>
-                    <button class="navbar-toggler ms-3" type="button" data-bs-toggle="collapse" data-bs-target="#primary-nav" aria-controls="primary-nav" aria-expanded="false" aria-label="Toggle navigation">
+                    <button class="navbar-toggler ms-3 d-none d-md-block d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#primary-nav" aria-controls="primary-nav" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
                 </div>

@@ -31,11 +31,18 @@ body {background:#fbfbfb; color: var(--event-header-color); font-family: var(--e
  Primary Navigation
 
  3 flex sections inside #eco-primary-nav .container, in DOM order:
-   .eco-nav-col-logo  - logo + cross-event caret (col 1)
-   .eco-nav-col-ctas  - CTA buttons + mobile toggler (col 3, reordered via order-lg-3)
+   .eco-nav-col-logo  - logo + cross-event caret + toggler #1 (col 1)
+   .eco-nav-col-ctas  - CTA buttons + toggler #2 (col 3, reordered via order-lg-3)
    .eco-nav-col-items - #primary-nav collapse, nav item dropdowns (col 2)
  Row splitting below lg and column widths/order above lg are handled entirely
  by Bootstrap's navbar-expand-lg + order-lg-3 utilities - no custom breakpoints here.
+
+ Two toggler buttons both target #primary-nav (Bootstrap's collapse JS keeps
+ aria-expanded in sync across every trigger for the same target), since a
+ single element can't visually relocate between two different flex-item
+ wrappers at a breakpoint: toggler #1 (in col 1, next to the logo) shows only
+ below md; toggler #2 (in col 3, with the CTAs) shows only md-lg, then
+ navbar-expand-lg's own rule hides the whole toggler concept at lg+.
 ********************************/
 
 /* Primary Nav Logo */
